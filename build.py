@@ -368,21 +368,6 @@ CONTENT = r"""
   </div>
 </section>
 
-<!-- GUARANTEE -->
-<section class="sec dark">
-  <div class="wrap">
-    <div class="kicker">Kami berani jamin</div>
-    <h2 class="h2">Belanja Tanpa Rasa Takut 🔒</h2>
-    <p class="lead">Kenapa ribuan orang berani checkout tanpa mikir? Karena risikomu NOL.</p>
-    <div class="guar">
-      <div class="g"><div class="ic">🚫</div><div><b>ANTI PHP — Dikirim Hari Ini</b><p>Pesan sebelum jam 3 sore, paket diproses & dikirim hari itu juga. Bukan janji manis, kami buktikan resi.</p></div></div>
-      <div class="g"><div class="ic">💳</div><div><b>COD — Cek Dulu Baru Bayar</b><p>Bayar di tempat saat barang sampai. Lihat, pegang, pastikan oke — baru keluarkan uang. Nol risiko.</p></div></div>
-      <div class="g"><div class="ic">🛡️</div><div><b>ANTI RETUR? Karena Lolos QC</b><p>Setiap unit melewati Quality Control sebelum kirim, jadi kamu tidak akan kepikiran retur. <b>Tetap</b> kami ganti baru kalau rusak/cacat saat sampai.</p></div></div>
-      <div class="g"><div class="ic">⭐</div><div><b>Garansi 30 Hari</b><p>Ada kendala dalam 30 hari? Chat kami, langsung kami bantu sampai beres. Reputasi 4,9 kami pertaruhkan.</p></div></div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="sec alt">
   <div class="wrap">
