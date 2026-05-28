@@ -1,0 +1,5 @@
+.DS_Store
+webp/
+tool-results/
+*.log
+.claude/settings.local.json
