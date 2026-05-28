@@ -222,6 +222,10 @@ b,strong{font-weight:800}
 .timer .t b{font-size:24px;display:block;line-height:1}
 .timer .t span{font-size:10px;text-transform:uppercase;opacity:.8;letter-spacing:.5px}
 .order .timer .t{background:rgba(255,255,255,.12)}
+
+/* OrderOnline embed — let OO use its own styling; just enable input usability */
+.ooef{position:relative;min-height:56px}
+.ooef,.ooef *{ -webkit-user-select:auto;user-select:auto}
 """
 
 # ---------------------------------------------------------------------------
@@ -400,7 +404,7 @@ CONTENT = r"""
   <div class="wrap">
     <div class="kicker" style="color:var(--gold)">Selangkah lagi</div>
     <h2 class="h2">Amankan Punyamu Sekarang 🛒</h2>
-    <p class="lead">Harga promo & gratis ongkir bisa berakhir kapan saja. Isi data, langsung pesan via WhatsApp.</p>
+    <p class="lead">Harga promo & gratis ongkir bisa berakhir kapan saja. Isi data di bawah, bayar di tempat (COD).</p>
     <div class="timer" id="timerOrder">
       <div class="t"><b id="cdH">00</b><span>Jam</span></div>
       <div class="t"><b id="cdM">14</b><span>Menit</span></div>
@@ -408,24 +412,13 @@ CONTENT = r"""
     </div>
     <div class="card">
       <h3>Form Pemesanan COD</h3>
-      <div class="small">Isi lengkap & benar agar pesanan cepat diproses ✅</div>
-      <div class="fld"><label>Nama Lengkap</label><input id="fName" type="text" placeholder="cth: Siti Rahayu" autocomplete="name"><div class="err" id="eName">Mohon isi nama.</div></div>
-      <div class="fld"><label>No. WhatsApp Aktif</label><input id="fPhone" type="tel" inputmode="numeric" placeholder="cth: 0812xxxxxxx" autocomplete="tel"><div class="err" id="ePhone">Mohon isi nomor WhatsApp yang benar.</div></div>
-      <div class="fld"><label>Alamat Lengkap (untuk kurir)</label><textarea id="fAddr" placeholder="Nama jalan, no rumah, RT/RW, kelurahan, kecamatan, kota, kode pos"></textarea><div class="err" id="eAddr">Mohon isi alamat lengkap.</div></div>
-      <div class="fld"><label>Paket</label>
-        <select id="fBundle">
-          <option value="1|159000">1 PCS — Rp159.000</option>
-          <option value="2|289000" selected>2 PCS — Rp289.000 (Paling Laris)</option>
-          <option value="3|399000">3 PCS — Rp399.000 (Termurah/pcs)</option>
-        </select>
+      <div class="small">Klik tombol di bawah → isi data → bayar di tempat (COD) ✅</div>
+      <div class="ooef">
+<form class="orderonline-embed-form" data-username="ahtashop" data-product-slug="electric-garlic-chopper-f-ur" data-product-id="6a181e67139a350cea0f50aa" id="oo-embed-form-electric-garlic-chopper-f-ur-8769" data-origin="orderonline">
+<div class="ooef-loader"><style>.ooef-loader{visibility: hidden;opacity: 0;position: absolute;left: 0;right: 0;top: 0;bottom: 0;display: flex;justify-content: center;align-items: center;flex-direction: column;animation: ooLoadingIn 10s ease;-webkit-animation: ooLoadingIn 10s ease;animation-fill-mode: forwards;overflow: hidden}@keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}@-webkit-keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}.ooef-loader>div,.ooef-loader>div:after{border-radius: 50%;width: 2.5rem;height: 2.5rem}.ooef-loader>div{font-size: 10px;position: relative;text-indent: -9999em;border: .25rem solid #f5f5f5;border-left: .25rem solid #55c4cf;-webkit-transform: translateZ(0);-ms-transform: translateZ(0);transform: translateZ(0);-webkit-animation: ooLoading 1.1s infinite linear;animation: ooLoading 1.1s infinite linear}.ooef-loader.error>div{border-left: .25rem solid #ff4500;animation-duration: 5s}@-webkit-keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}@keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}</style><div aria-live="polite" role="status"><div>Loading...</div></div></div>
+</form>
       </div>
-      <div class="totbox">
-        <div class="r"><span>Subtotal</span><span id="tSub">Rp289.000</span></div>
-        <div class="r"><span>Ongkir hari ini</span><span style="color:var(--green);font-weight:800">GRATIS</span></div>
-        <div class="r tot"><span>Total Bayar (COD)</span><b id="tTot">Rp289.000</b></div>
-      </div>
-      <button class="btnwa" id="btnOrder">🟢 PESAN SEKARANG VIA WHATSAPP</button>
-      <p class="center" style="font-size:11.5px;color:#6b7280;margin-top:10px">🔒 Data kamu aman & hanya untuk pengiriman</p>
+      <p class="center" style="font-size:11.5px;color:#6b7280;margin-top:10px">🔒 Pemesanan diproses aman via sistem OrderOnline • COD</p>
     </div>
     <p class="formnote">⚡ <b id="stockBtm">17</b> stok tersisa • 🔥 <b>347</b> orang memesan hari ini</p>
   </div>
@@ -555,10 +548,6 @@ function boot(){
 }
 
 /* ===== app logic ===== */
-var WA_NUMBER="6281234567890"; /* GANTI dengan nomor WhatsApp toko (format 62...) */
-var state={qty:2,price:289000};
-function rupiah(n){return "Rp"+n.toLocaleString("id-ID");}
-
 function init(){
   /* scroll buttons */
   document.querySelectorAll("[data-scroll]").forEach(function(el){
@@ -569,66 +558,52 @@ function init(){
     });
   });
 
-  /* bundle options */
+  /* bundle options (visual highlight / pricing anchor) */
   var bOpts=document.querySelectorAll("#bundleOpts .opt");
   bOpts.forEach(function(o){o.addEventListener("click",function(){
     bOpts.forEach(function(x){x.classList.remove("act");});
     o.classList.add("act");
-    state.qty=parseInt(o.getAttribute("data-qty"),10);
-    state.price=parseInt(o.getAttribute("data-price"),10);
-    var sel=document.getElementById("fBundle");if(sel)sel.value=state.qty+"|"+state.price;
-    syncTotals();
   });});
-
-  /* selects */
-  var fBundle=document.getElementById("fBundle");
-  fBundle.addEventListener("change",function(){
-    var p=fBundle.value.split("|");state.qty=parseInt(p[0],10);state.price=parseInt(p[1],10);
-    bOpts.forEach(function(x){x.classList.toggle("act",parseInt(x.getAttribute("data-qty"),10)===state.qty);});
-    syncTotals();
-  });
 
   /* faq */
   document.querySelectorAll("#faq .qa").forEach(function(qa){
     qa.querySelector(".q").addEventListener("click",function(){qa.classList.toggle("open");});
   });
 
-  /* order submit */
-  document.getElementById("btnOrder").addEventListener("click",submitOrder);
-
-  syncTotals();
   startCountdown();
   startSticky();
   startStock();
   startToasts();
+  initOrderOnline();
 }
 
-function syncTotals(){
-  var t=document.getElementById("tSub");if(t)t.textContent=rupiah(state.price);
-  var tt=document.getElementById("tTot");if(tt)tt.textContent=rupiah(state.price);
-}
-
-function val(id){var e=document.getElementById(id);return e?e.value.trim():"";}
-function showErr(id,on){var e=document.getElementById(id);if(e)e.style.display=on?"block":"none";}
-
-function submitOrder(){
-  var name=val("fName"),phone=val("fPhone").replace(/[^0-9]/g,""),addr=val("fAddr");
-  var ok=true;
-  showErr("eName",!name);if(!name)ok=false;
-  showErr("ePhone",phone.length<9);if(phone.length<9)ok=false;
-  showErr("eAddr",addr.length<10);if(addr.length<10)ok=false;
-  if(!ok){document.querySelector(".err[style*='block']").scrollIntoView({behavior:"smooth",block:"center"});return;}
-  var perPcs=Math.round(state.price/state.qty);
-  var msg=
-    "Halo, saya mau PESAN Electric Garlic Chopper (COD) ✅%0A%0A"+
-    "👤 Nama: "+name+"%0A"+
-    "📱 WhatsApp: "+phone+"%0A"+
-    "📦 Paket: "+state.qty+" PCS%0A"+
-    "💰 Total: "+rupiah(state.price)+" (COD, gratis ongkir)%0A"+
-    "🏠 Alamat: "+encodeURIComponent(addr)+"%0A%0A"+
-    "Mohon diproses ya. Terima kasih!";
-  var url="https://wa.me/"+WA_NUMBER+"?text="+msg;
-  window.location.href=url;
+/* OrderOnline embed bootstrap — runs AFTER content injection so the form
+   element exists in the DOM (innerHTML-injected <script> would not execute). */
+function initOrderOnline(){
+  try{
+    var xLogError=function(error){
+      try{
+        var req=new XMLHttpRequest();
+        var payload=JSON.stringify({url:document.location.href,line:error.line,stack:error.stack});
+        var params="message="+encodeURIComponent(error.name)+"&payload="+encodeURIComponent(payload)+"&type=embed&level=error";
+        req.open("POST","https://api.orderonline.id/log",true);
+        req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        req.send(params);
+      }catch(_){}
+    };
+    var xEmbedScript=function(){
+      !function(w,d,e,v,id,t,s){if(d.getElementById(id))return;t=d.createElement(e);t.async=!0;t.src=v;t.id=id;s=d.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);}
+      (window,document,"script","https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.2","oo-embed-js");
+    };
+    var xEmbedInit=function(w,n){if(w.ooe)return;n=w.ooe=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!w._ooe)w._ooe=n;n.push=n;n.loaded=!0;n.version="8.0.2";n.queue=[];};
+    xEmbedInit(window);
+    window.ooe("setup","redirect","https://ahtashop.orderonline.id");
+    window.ooe("init","5f5ebafe9d8e8e277831b563","6a181e67139a350cea0f50aa",null,"oo-embed-form-electric-garlic-chopper-f-ur-8769",{"mode":"page","action":"Klik untuk pemesanan","title":"Form Pemesanan","triggerPixel":false,"triggerGtm":false});
+    if(!window.jQuery){
+      !function(w,d,e,v,id,t,s){if(d.getElementById(id))return;t=d.createElement(e);t.async=!0;t.src=v;t.id=id;t.addEventListener("load",xEmbedScript);s=d.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);}
+      (window,document,"script","https://cdn.orderonline.id/js/vendor/jquery.min.js","oo-embed-jquery");
+    }else{xEmbedScript();}
+  }catch(e){}
 }
 
 /* evergreen countdown (resets to keep urgency) */
