@@ -234,8 +234,6 @@ b,strong{font-weight:800}
 # CONTENT (inner HTML, will be encoded)
 # ---------------------------------------------------------------------------
 CONTENT = r"""
-<style>__CSS__</style>
-
 <div class="topbar">🔥 FLASH SALE BERAKHIR DALAM <b id="cdTop">14:59</b> &nbsp;•&nbsp; STOK SISA <b id="stockTop">17</b> PCS</div>
 
 <header class="hero">
@@ -246,7 +244,7 @@ CONTENT = r"""
     <p class="sub">Electric Garlic Chopper &mdash; cincang bawang, cabai, daging & bumbu <b>HANYA 3 DETIK</b> cuma dengan SATU pencetan. Dapur kotor & jari teriris? Lupakan selamanya.</p>
     <div class="heroimg">
       <span class="flame">🔥 12.847 TERJUAL</span>
-      <img src="__HERO__" alt="Electric Garlic Chopper" width="420" height="420" fetchpriority="high" decoding="async">
+      <img src="__HERO__" alt="Electric Garlic Chopper" width="420" height="420" fetchpriority="high">
     </div>
     <div class="stars">★★★★★</div>
     <div class="rate"><b>4,9/5</b> dari <b>12.847+</b> pembeli puas se-Indonesia</div>
@@ -450,6 +448,7 @@ OUTER = r"""<!DOCTYPE html>
 <link rel="preconnect" href="https://ahtashop.orderonline.id">
 <title>Electric Garlic Chopper — Cincang 3 Detik Tanpa Air Mata | PROMO 54%</title>
 <style>
+__CSS__
 html,body{margin:0;background:#fff}
 @media print{html{display:none!important}}
 #__blk{position:fixed;inset:0;background:#0c1730;color:#fff;z-index:2147483647;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:18px;font-weight:700}
@@ -646,7 +645,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </html>
 """
 
-OUTER = OUTER.replace("__CONTENT__", CONTENT).replace("__HERO__", HERO).replace("__TOAST__", TOAST_IMG)
+OUTER = OUTER.replace("__CONTENT__", CONTENT).replace("__CSS__", CSS).replace("__HERO__", HERO).replace("__TOAST__", TOAST_IMG)
 
 with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
     f.write(OUTER)
